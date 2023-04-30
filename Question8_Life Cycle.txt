@@ -1,0 +1,124 @@
+8. Create an application to display various activity life cycle and fragment life cycle
+methods.
+
+->. activity_main.xml
+fragment_blank.xml
+	android:layout_marginStart="10dp"
+	android:layout_marginTop="20dp"
+	android:text=" " android:textSize="20sp"
+	android:textStyle="bold"/>
+	<fragment
+	android:id="@+id/frag" android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:name="com.example.question8.BlankFragment"
+	android:layout_toEndOf="@+id/tv1"
+	android:layout_marginStart="50dp"/>
+</RelativeLayout>
+	<?xml version="1.0" encoding="utf-8"?>
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	tools:context=".MainActivity">
+<TextView
+	android:id="@+id/tv1"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="30dp"
+	android:layout_marginStart="10dp"
+	android:text="@string/activity_lifecycle"
+	android:textSize="20sp"
+	android:textStyle="bold"/>
+<TextView
+	android:id="@+id/result1"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@id/tv1"
+	<?xml version="1.0" encoding="utf-8"?>
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	tools:context=".BlankFragment">
+	<!-- TODO: Update blank fragment layout -->
+<TextView
+	android:id="@+id/tv"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="30dp"
+	android:text="@string/fragment_lifecycle"
+	android:textSize="20sp"
+	android:textStyle="bold" />
+<TextView
+	android:id="@+id/result1"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@id/tv"
+	android:layout_marginTop="20dp"
+	android:text=" " android:textSize="20sp"
+	android:textStyle="bold"/>
+</RelativeLayout>
+
+
+->. MainActivity.java
+package com.example.question8;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+	public class MainActivity extends AppCompatActivity {TextView
+	result;
+	@Override
+		protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState); setContentView(R.layout.activity_main);
+		result = findViewById(R.id.result1);
+		result.setText("onCreate");
+		}
+	@Override
+	protected void onStop(){
+	super.onStop();
+	String res = result.getText().toString();
+	result.setText(res + "\n" + "onStart");
+	}
+	@Override
+	protected void onStart(){
+	super.onStart();
+	String res = result.getText().toString();
+	result.setText(res + "\n" + "onStart");
+	}
+	@Override
+	protected void onPause(){
+	super.onPause();
+	String res = result.getText().toString();
+	result.setText(res + "\n" + "onPause");
+	}
+	@Override
+	BlankFragment.java
+	protected void onResume(){
+	super.onResume();
+	String res = result.getText().toString();
+	result.setText(res + "\n" + "onResume");
+	}
+	@Override
+	protected void onDestroy(){
+	super.onDestroy();
+	String res = result.getText().toString();
+	result.setText(res + "\n" + "onDestroy");
+	}
+}
+package com.example.question8;
+import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import android.view.LayoutInflater; import
+android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+public class BlankFragment extends Fragment {
+TextView result;
+@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container,
+Bundle savedInstanceState) {
+// Inflate the layout for this fragment
+View view = inflater.inflate(R.layout.fragment_blank, container,
+false);
+result = (TextView) view.findViewById(R.id.result1);return
+view;
+}

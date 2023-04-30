@@ -1,0 +1,117 @@
+5.Create a menu with 5 options and selected option should appear in text box.
+
+-> Activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4593B5"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/mytv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+->  Menus.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/id1"
+        android:title="Option1" />
+    <item
+        android:id="@+id/id2"
+        android:title="Option2" />
+    <item
+        android:id="@+id/id3"
+        android:title="Option3" />
+    <item
+        android:id="@+id/id4"
+        android:title="Option4" />
+    <item
+        android:id="@+id/id5"
+        android:title="Option5" />
+</menu>
+
+->  MainActivity.java
+
+package com.example.practical_5;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    TextView tv;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        tv = findViewById(R.id.mytv);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater m = getMenuInflater();
+        m.inflate(R.menu.menus, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.id1:
+                Toast.makeText(this, "Option1", Toast.LENGTH_SHORT).show();
+                tv.setText("Option1");
+                break;
+            case R.id.id2:
+                Toast.makeText(this, "Option2", Toast.LENGTH_SHORT).show();
+                tv.setText("Option2");
+                break;
+            case R.id.id3:
+                Toast.makeText(this, "Option3", Toast.LENGTH_SHORT).show();
+                tv.setText("Option3");
+
+                break;
+            case R.id.id4:
+                Toast.makeText(this, "Option4", Toast.LENGTH_SHORT).show();
+
+                tv.setText("Option4");
+            case R.id.id5:
+                Toast.makeText(this, "Option5", Toast.LENGTH_SHORT).show();
+
+                tv.setText("Option5");
+
+                break;
+        }
+        return true;
+    }
+}
+

@@ -1,0 +1,95 @@
+4.Create spinner with strings taken from resource folder (res >> value folder) and on changing the spinners value, Image will change.
+
+->  MainActvity.java
+
+package com.example.myapplication;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView text1 = (TextView) findViewById(R.id.text1);
+        ImageView img1 = (ImageView) findViewById(R.id.img1);
+        String[] city = {"delhi","mumbai","chennai","kolkata"};
+        Spinner spin = (Spinner) findViewById(R.id.spinner1);
+        ArrayAdapter<String> arrayadpt = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, city);
+        spin.setAdapter(arrayadpt);
+        spin.setOnItemSelectedListener(new OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View v, int
+                    position, long id){
+                text1.setText("Your selected city : "+ city[position]);
+                if(position==0) {img1.setImageResource(R.mipmap.ic_launcher); }
+                else if(position==1) {img1.setImageResource(R.mipmap.ic_launcher2); }
+                else if(position==2) {img1.setImageResource(R.mipmap.ic_launcher3_foreground); }
+                else if(position==3) {img1.setImageResource(R.mipmap.ic_launcher4); }
+            }
+            public void onNothingSelected(AdapterView<?> parent){
+                text1.setText("");
+            }
+        });
+    }
+}
+
+
+->  AndroidManifest.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="116dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="wrap_content"
+        android:layout_height="116dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="116dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.746" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
